@@ -1,0 +1,28 @@
+def encode_cd(n):
+    binary = bin(n)
+    rev_bin_str = str(binary) [::-1]
+    combo = 'P'
+    letter = True
+    for bit in rev_bin_str:
+        if bit == '1':
+            letter = not letter
+            if letter:
+                combo += 'P'
+            if not letter:
+                combo += 'L'
+        if bit == '0':
+            if letter:
+                combo += 'P'
+            if not letter:
+                combo += 'L'
+        if bit == 'b':
+            leftovers = 8 - len(combo)
+            if leftovers < 0:
+                break
+            if leftovers == 0:
+                combo [:-1]
+            if letter:
+                combo += 'P'*leftovers
+            if not letter:
+                combo += 'L'*leftovers
+    return combo
